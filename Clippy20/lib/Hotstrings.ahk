@@ -11,18 +11,58 @@
 ::msa::MS Access
 ::mse::MS Excel
 
-:*O:fk@::filip.kraus@corporatesolutions.uk.net
-:*O:scr::
-FormatTime, TimeStr, A_Now, yyyy-MM-dd hhmmss
-SendInput Screenshot %TimeStr%
-return
-
 /*
 #Hotstring Z0
 ::--::{U+2013}		; En Dash
 ::---::{U+2014}		; Em Dash	; DOESN@T OWKR
 #Hotstring Z
 */
+
+; Omit ending character
+#Hotstring O
+::fk@::filip.kraus@corporatesolutions.uk.net
+::scr@::
+FormatTime, TimeStr, A_Now, yyyy-MM-dd hhmmss
+SendInput % "Screenshot " . TimeStr
+return
+
+::bp@::	; BP ULSD Price
+FormatTime, TimeStr, A_Now, YWeek
+TimeStr := SubStr(TimeStr, 1, -2) . "-W" . SubStr(TimeStr, -1)
+SendInput % "BP ULSD Price " . TimeStr
+return
+
+::wc@::	; Walkaround chekcs
+FormatTime, TimeStr, A_Now, YWeek
+TimeStr := SubStr(TimeStr, 1, -2) . "-W" . SubStr(TimeStr, -1)
+SendInput % "Walkaround checks " . TimeStr
+return
+
+::fa@::	; Fleet analytics
+FormatTime, TimeStr, A_Now, YWeek
+TimeStr := SubStr(TimeStr, 1, -2) . "-W" . SubStr(TimeStr, -1)
+SendInput % "Fleet analytics " . TimeStr
+return
+
+::ft@::	; Fuel transactions
+FormatTime, Year, A_Now, yyyy
+FormatTime, Month, A_Now, MM
+TimeStr := Year . "-" . Month
+SendInput % "Fuel transactions " . TimeStr
+return
+
+::ir@::	; Incident report
+FormatTime, TimeStr, A_Now, YWeek
+TimeStr := SubStr(TimeStr, 1, -2) . "-W" . SubStr(TimeStr, -1)
+SendInput % "Incident report " . TimeStr
+return
+
+
+::deg::{U+00B0}
+::degc::{U+2103}
+::degf::{U+2109}
+
+#Hotstring O0
 
 ; * - trigger hostring without ending character
 #Hotstring *
@@ -31,16 +71,28 @@ return
 
 ::^x::{U+00D7}		; ×
 ::^/::{U+00F7}		; ÷
+::=/=::{U+2260}		; Doesn't equal
 ::<<::{U+00AB}		; «
 ::>>::{U+00BB}		; »
-::->::{U+2192}		; Rightwards Arrow
+
+; Unicode - Simple arrows
 ::<-::{U+2190}		; Leftwards Arrow
 ::/\::{U+2191}		; Upwards Arrow
+::->::{U+2192}		; Rightwards Arrow
 ::\/::{U+2193}		; Downwards Arrow
+;::<>::{U+2194}		; Left Right Arrow
+;::::{U+2195}		; Up Down Arrow
+;::::{U+2196}		; North West Arrow
+;::::{U+2197}		; North East Arrow
+;::::{U+2198}		; South East Arrow
+;::::{U+2199}		; South West Arrow
 
 ::[v]::{U+1F5F9}	; Ballot Box with Bold Check
 ::[x]::{U+2612}		; Ballot Box with X
 ::[ ]::{U+2610}		; Ballot Box
+
+::v@::{U+2610}		; Check Mark
+::x@::{U+2717}		; Ballot X
 
 ; ? - hostring will trigger even inside a word
 #Hotstring ?

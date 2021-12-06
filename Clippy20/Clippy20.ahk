@@ -40,27 +40,39 @@ MaxIdleMs := 1000 * 60
 MoveS := 50
 MoveL := 100
 
-IdleLoop:
-Loop
-{
-	If (A_TimeIdle > MaxIdleMs && MenuNoIdleEnabled)
-	{
-		SendEvent {Click rel 0, -%MoveS%, 0}
-		SendEvent {Click rel 0, %MoveL%, 0}
-		SendEvent {Click rel 0, -%MoveS%, 0}
-		SendEvent {Click rel %MoveS%, 0, 0}
-		SendEvent {Click rel -%MoveL%, 0, 0}
-		SendEvent {Click rel %MoveS%, 0, 0}
-		
-		Sleep % MaxIdleMs * 0.75
-	}
-	Sleep, 1000
-}
 
-
+; Set timers
+SetTimer, IdleLoop, 1000		; Move mouse when idle
+SetTimer, ExcelClipboard, 500	; Cancled anoying Excel clipboard popup
 
 ; End of auto-execute section
 return
+
+; If computer was idle for certain ammount of time, move mouse
+IdleLoop:
+If (A_TimeIdle > MaxIdleMs && MenuNoIdleEnabled)
+{
+	SendEvent {Click rel 0, -%MoveS%, 0}
+	SendEvent {Click rel 0, %MoveL%, 0}
+	SendEvent {Click rel 0, -%MoveS%, 0}
+	SendEvent {Click rel %MoveS%, 0, 0}
+	SendEvent {Click rel -%MoveL%, 0, 0}
+	SendEvent {Click rel %MoveS%, 0, 0}
+	
+	Sleep % MaxIdleMs * 0.75
+}
+return
+
+; Check if Excel clipboard popup is up and close it
+ExcelClipboard:
+	IfWinExist, Microsoft Excel, There is a large amount of information on the Clipboard
+	{
+		WinActivate
+		Send, {Enter}
+	}
+return
+
+
 
 
 MenuHandler:
