@@ -52,8 +52,7 @@ SendInput % "Fuel transactions " . TimeStr
 return
 
 ::ir@::	; Incident report
-FormatTime, TimeStr, A_Now, YWeek
-TimeStr := SubStr(TimeStr, 1, -2) . "-W" . SubStr(TimeStr, -1)
+FormatTime, TimeStr, A_Now, yyyy-MM
 SendInput % "Incident report " . TimeStr
 return
 
