@@ -68,9 +68,6 @@ return
 ::(c)::{U+00A9}		; ©
 ::(r)::{U+00AE}		; ®
 
-::^x::{U+00D7}		; ×
-::^/::{U+00F7}		; ÷
-::=/=::{U+2260}		; Doesn't equal
 ::<<::{U+00AB}		; «
 ::>>::{U+00BB}		; »
 
@@ -92,6 +89,15 @@ return
 
 ::v@::{U+2610}		; Check Mark
 ::x@::{U+2717}		; Ballot X
+
+; https://unicode-table.com/en/sets/mathematical-signs/
+; Ligatures
+::^x::{U+00D7}		; ×
+
+; Math
+::=/=::{U+2260}		; Doesn't equal
+::^/::{U+00F7}		; ÷
+
 
 ; ? - hostring will trigger even inside a word
 #Hotstring ?
