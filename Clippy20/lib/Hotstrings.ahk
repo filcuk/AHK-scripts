@@ -20,7 +20,23 @@
 
 ; Omit ending character
 #Hotstring O
+::date@::
+FormatTime, TimeStr, A_Now, yyyy-MM-dd
+SendInput % TimeStr
+return
+
+::time@::
+FormatTime, TimeStr, A_Now, hh:mm
+SendInput % TimeStr
+return
+
+::iso@::
+FormatTime, TimeStr, A_Now, yyyy-MM-dd hh:mm
+SendInput % TimeStr
+return
+
 ::fk@::filip.kraus@corporatesolutions.uk.net
+
 ::scr@::
 FormatTime, TimeStr, A_Now, yyyy-MM-dd hhmmss
 SendInput % "Screenshot " . TimeStr
