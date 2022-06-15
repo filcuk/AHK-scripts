@@ -81,6 +81,13 @@ return
 
 ; * - trigger hostring without ending character
 #Hotstring *
+
+::source@:: ; Markdown URL source inserter
+URL := Clipboard
+RegExMatch(Clipboard, "O)" . "^(?:https?:)?(?:\/\/)?(?:[^@\n]+@)?(?:www\.)?([^:\/\n]+)(?)", Out) ; "O)" = AHK object mode
+SendInput % "[" . Out[1] . "](" . URL . ")"
+return
+
 ::(c)::{U+00A9}		; ©
 ::(r)::{U+00AE}		; ®
 
