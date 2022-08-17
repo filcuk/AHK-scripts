@@ -26,12 +26,12 @@ SendInput % TimeStr
 return
 
 ::time@::
-FormatTime, TimeStr, A_Now, hh:mm
+FormatTime, TimeStr, A_Now, HH:mm
 SendInput % TimeStr
 return
 
-::iso@::
-FormatTime, TimeStr, A_Now, yyyy-MM-dd hh:mm
+::tstamp@::
+FormatTime, TimeStr, A_Now, yyyy-MM-dd HH:mm
 SendInput % TimeStr
 return
 
@@ -88,11 +88,11 @@ RegExMatch(Clipboard, "O)" . "^(?:https?:)?(?:\/\/)?(?:[^@\n]+@)?(?:www\.)?([^:\
 SendInput % "[" . Out[1] . "](" . URL . ")"
 return
 
-::(c)::{U+00A9}		; ©
-::(r)::{U+00AE}		; ®
+::(c)::{U+00A9}		; ï¿½
+::(r)::{U+00AE}		; ï¿½
 
-::<<::{U+00AB}		; «
-::>>::{U+00BB}		; »
+::<<::{U+00AB}		; ï¿½
+::>>::{U+00BB}		; ï¿½
 
 ; Unicode - Simple arrows
 ::<-::{U+2190}		; Leftwards Arrow
@@ -113,28 +113,35 @@ return
 ::v@::{U+2610}		; Check Mark
 ::x@::{U+2717}		; Ballot X
 
+; https://unicode-table.com/en/sets/unit-symbols/
+; TODO
+
 ; https://unicode-table.com/en/sets/mathematical-signs/
 ; Ligatures
-::^x::{U+00D7}		; ×
+::^x::{U+00D7}		; Ã— (multiplication sign)
 
 ; Math
 ::=/=::{U+2260}		; Doesn't equal
-::^/::{U+00F7}		; ÷
+::^/::{U+00F7}		; Ã·
+::^*::{U+2217}		; âˆ— (asterisk operator)
 
 
 ; ? - hostring will trigger even inside a word
 #Hotstring ?
-::^o::{U+00B0}		; °
-::+-::{U+00B1}		; ±
-::^1::{U+00B9}		; ¹
-::^2::{U+00B2}		; ²
-::^3::{U+00B3}		; ³
+::^o::{U+00B0}		; Â°
+::-+::{U+2213}		; âˆ“ (minus-or-plus sign)
+::+-::{U+00B1}		; Â± (plus minus symbol)
+::-~::{U+2242}		; â‰‚ (minus tilde)
+::^1::{U+00B9}		; Â¹
+::^2::{U+00B2}		; Â²
+::^3::{U+00B3}		; Â³
+::^E::{U+2211}      ; âˆ‘
 
 ; * - trigger hostring without ending character
 #Hotstring *0
-::1/4::{U+00BC}		; ¼
-::1/2::{U+00BD}		; ½
-::3/4::{U+00BE}		; ¾
+::1/4::{U+00BC}		; ï¿½
+::1/2::{U+00BD}		; ï¿½
+::3/4::{U+00BE}		; ï¿½
 
 #Hotstring O
 
