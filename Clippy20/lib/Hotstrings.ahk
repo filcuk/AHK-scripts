@@ -62,8 +62,8 @@ return
 
 ::ft@::	; Fuel transactions
 FormatTime, Year, A_Now, yyyy
-FormatTime, Month, A_Now, MM
-TimeStr := Year . "-" . Month
+FormatTime, TimeStr, A_Now, YWeek
+TimeStr := SubStr(TimeStr, 1, -2) . "-W" . SubStr(TimeStr, -1)
 SendInput % "Fuel transactions " . TimeStr
 return
 
