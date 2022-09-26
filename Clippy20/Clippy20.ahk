@@ -121,7 +121,7 @@ return
 
 
 ; Libraries
+#Include Functions.ahk
 #Include Hotstrings.ahk
 #Include TrayTip.ahk
 #Include IsTrayMenuChecked.ahk
-
