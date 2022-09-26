@@ -85,7 +85,9 @@ return
 ::source@:: ; Markdown URL source inserter
 URL := Clipboard
 RegExMatch(Clipboard, "O)" . "^(?:https?:)?(?:\/\/)?(?:[^@\n]+@)?(?:www\.)?([^:\/\n]+)(?)", Out) ; "O)" = AHK object mode
-SendInput % "[" . Out[1] . "](" . URL . ")"
+Out := "[" . Out[1] . "](" . URL . ")"
+; SendInput % Out   ; Can be too slow
+PasteThis(Out)
 return
 
 ::(c)::{U+00A9}		; �
